@@ -2,7 +2,7 @@
 create by ---追光者。
 """
 from flask_restful import Resource
-from app.models.User_model import User
+from app.models.model import User
 from app.forms.tokenfrom import *
 from app.config.status_code import *
 from app.libs.common import Res

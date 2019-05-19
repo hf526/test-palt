@@ -1,7 +1,6 @@
 from app.exts import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from marshmallow import fields, Schema
 
 
 class Base:
@@ -25,16 +24,6 @@ class Base:
         except Exception as e:
             db.session.rollback()
             return e
-
-
-class UserSchema(Schema):
-    id = fields.Integer()
-    name = fields.Str()
-    username = fields.Str()
-    role = fields.Integer()
-    status = fields.Integer()
-    create_time = fields.DateTime()
-    update_time = fields.DateTime()
 
 
 class User(Base, db.Model):
@@ -123,6 +112,7 @@ class Logs(Base, db.Model):
     __tablename__ = 'logs'
     id = db.Column(db.Integer, primary_key=True, comment="主键")
     operation = db.Column(db.String(80), comment="操作描述")
+    operautor = db.Column(db.String(80), comment="操作人")
     client = db.Column(db.Integer, comment="最后操作的客户端")
 
     def __repr__(self):

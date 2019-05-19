@@ -10,6 +10,10 @@ LoginSuccess = StatusCode(
     code=0,
     data="登陆成功"
 )
+NotLogin = StatusCode(
+    code=1000,
+    data="请先登录"
+)
 UserNull = StatusCode(
     code=1001,
     msg="用户不存在"

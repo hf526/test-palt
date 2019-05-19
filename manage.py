@@ -7,8 +7,8 @@ manager添加命令行实例
 """
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-from app.app import *
-from app.models.muster.model_muster import db
+from app.app import app
+from app.models.model import db
 
 manager = Manager(app)
 migrate = Migrate(app, db)

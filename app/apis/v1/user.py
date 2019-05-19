@@ -2,14 +2,13 @@
 新增/编辑/删除/查询用户接口
 """
 from flask_restful import Resource
-from app.models.User_model import User
+from app.models.model import User
 from app.forms.userforms import *
 from app.config.status_code import *
 from app.libs.token import Verify
 
 
 class UserAdd(Resource):
-    @Verify
     def post(self):
         request_data = UserAddData()
         username = User.query.filter_by(username=request_data[Verifyfromdata.username]).first()
@@ -47,6 +46,6 @@ class SelectUser(Resource):
     def get(self):
         request_data = UserSel()
         user = User.query.filter_by(username=request_data[Verifyfromdata.id]).first()
-        if User.delete_data(user):
-            return Success
+        if user:
+            return user
         return UserNull

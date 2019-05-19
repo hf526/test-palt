@@ -1,4 +1,4 @@
-from app.models.Base import db, Base
+from app.models.back.Base import db, Base
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
