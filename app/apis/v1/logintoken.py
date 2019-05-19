@@ -1,10 +1,12 @@
-"""生成token"""
+"""
+create by ---追光者。
+"""
 from flask_restful import Resource
-from app.models import User
+from app.models.User_model import User
 from app.forms.tokenfrom import *
 from app.config.status_code import *
-from flask import jsonify
-from app.libs.token import Verifytoken
+from app.libs.common import Res
+from app.libs.token import create_auto_token
 
 
 class Login(Resource):
@@ -14,5 +16,8 @@ class Login(Resource):
         if username:
             password = request_data[Loginfrom.password]
             if User.check_pwd(username, password):
-                return LoginSuccess
+                token = create_auto_token(username=request_data.username, role=username.role)
+                return Res(LoginSuccess, token=token)
+            else:
+                return PasswordErr
         return UserNull

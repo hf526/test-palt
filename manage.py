@@ -5,15 +5,12 @@
 manager添加命令行实例
 创建迁移脚本绑定app和db，添加命令
 """
-from app.models import db
 from flask_migrate import Migrate, MigrateCommand
-from flask_script import Shell, Manager
+from flask_script import Manager
 from app.app import *
-
-app.config.from_object("app.config.config.Eev")
+from app.models.muster.model_muster import db
 
 manager = Manager(app)
-
 migrate = Migrate(app, db)
 
 manager.add_command('db', MigrateCommand)

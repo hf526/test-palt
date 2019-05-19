@@ -11,6 +11,7 @@ class Loginfrom:
     username = 'username'
     password = 'password'
     client = 'client'
+    role = "role"
 
 
 def get_login():
