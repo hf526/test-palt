@@ -2,6 +2,8 @@
 token认证序列化
 """
 from flask_restful import reqparse
+from app.exts import ma
+from app.models.User_model import User
 
 
 class Loginfrom:
@@ -21,3 +23,10 @@ def get_login():
     parser.add_argument(Loginfrom.client, type=int)
     args = parser.parse_args()
     return args
+
+
+class UserSchema(ma.ModelSchema):
+    """序列化类"""
+
+    class Meta:
+        model = User

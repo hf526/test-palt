@@ -1,9 +1,6 @@
 """
-导入flask实例，orm实例，迁移库，命令行管理库
-实例化APP,配置数据库链接地址
-实例化db对象
-manager添加命令行实例
-创建迁移脚本绑定app和db，添加命令(重点需在最后注册蓝图)
+导入app对象和蓝图对象
+给对应的类注册相应的api地址
 """
 from flask import Blueprint
 from app.exts import app

@@ -1,5 +1,6 @@
 from app.models.Base import db, Base
 
+
 class WebConfig(Base, db.Model):
     __tablename__ = 'webconfig'
     id = db.Column(db.Integer, primary_key=True, comment="主键")

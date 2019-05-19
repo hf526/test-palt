@@ -1,5 +1,4 @@
-from app.models.Base import Base
-from app.exts import db, ma
+from app.models.Base import db, Base
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -34,8 +33,3 @@ class User(Base, db.Model):
 
     def __repr__(self):
         return '<Project %r>' % self.__tablename__
-
-
-class UserSchema(ma.ModelSchema):
-    class Meta:
-        model = User
