@@ -16,7 +16,6 @@ flask-migrate = "*"
 flask-script = "*"
 install = "*"
 flask-marshmallow = "*"
-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 
 [requires]

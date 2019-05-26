@@ -1,4 +1,12 @@
-from app.exts import app
+"""
+综合执行文件
+init构建数据库
+update更新数据库模型
+back 回退上个版本
+api 生成api文档
+run 运行服务器
+其他  重新输入
+"""
 import os
 
 

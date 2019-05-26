@@ -2,6 +2,10 @@
 token认证序列化
 """
 from flask_restful import reqparse
+from app.models.model import User
+from app.models.SerializeModel import UserSchema
+
+
 # from marshmallow import fields, Schema
 
 
@@ -22,9 +26,6 @@ def get_login():
     parser.add_argument(Loginfrom.client, type=int)
     args = parser.parse_args()
     return args
-
-
-
 
 # class UserSchema(Schema):
 #     id = fields.Integer()

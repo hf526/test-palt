@@ -1,4 +1,4 @@
-from app.exts import db
+from app.apilist import db
 from datetime import datetime
 
 class Base:

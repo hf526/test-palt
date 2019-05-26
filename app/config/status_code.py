@@ -36,5 +36,5 @@ UserExist = StatusCode(
 )
 UnknowError = StatusCode(
     code=1003,
-    msg="操作失败"
+    msg="未知错误"
 )

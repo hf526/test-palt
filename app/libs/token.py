@@ -36,6 +36,7 @@ def Verifytoken():
         except SignatureExpired:
             return TokenExpired
         username = data['username']
+        print('tokenname',username)
         role = data['role']
         User = namedtuple('Token', ['username', 'role'])
         return User(username=username, role=role)
@@ -46,9 +47,9 @@ def Verifytoken():
 def Verify(func):
     def wrapper(*args, **kwargs):
         userinfo = Verifytoken()
-        if "username" in userinfo:
-            print(1)
+        if "test1" in userinfo:
             func(*args, **kwargs)
         else:
+            print('傻逼')
             return userinfo
     return wrapper

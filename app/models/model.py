@@ -1,6 +1,6 @@
-from app.exts import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from app.app import db, ma
 
 
 class Base:
@@ -32,14 +32,14 @@ class User(Base, db.Model):
     name = db.Column(db.String(128), comment="用户昵称", default="未填写昵称用户")
     username = db.Column(db.String(128), unique=True, comment="用户名")
     pwd_hash = db.Column(db.String(512), comment="密码")
-    role = db.Column(db.Integer, comment="用户角色")
     status = db.Column(db.Integer, comment="状态")
+    create_time = db.Column(db.DateTime, default=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), comment="创建时间")
+    update_time = db.Column(db.DateTime, default=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), comment="更新时间")
 
-    def __init__(self, name, username, password, role):
+    def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.hspassword = password
-        self.role = role
 
     # 读
     @property
@@ -57,6 +57,16 @@ class User(Base, db.Model):
 
     def __repr__(self):
         return '<Project %r>' % self.__tablename__
+
+
+class Role(Base, db.Model):
+    __tablename__ = 'role'
+    id = db.Column(db.Integer, primary_key=True, comment="主键")
+    username = db.Column(db.String(128), unique=True, comment="用户名")
+    role = db.Column(db.Integer, comment="用户角色")
+
+    def __repr__(self):
+        return '<Role %r>' % self.__tablename__
 
 
 class Project(Base, db.Model):
@@ -124,7 +134,7 @@ class Variable(Base, db.Model):
     id = db.Column(db.Integer, primary_key=True, comment="主键")
     variable_name = db.Column(db.String(80), comment="变量名称")
     script = db.Column(db.String(80), comment="脚本")
-    status = db.Column(db.Integer, comment="状态")
 
     def __repr__(self):
         return '<Api %r>' % self.__tablename__
+

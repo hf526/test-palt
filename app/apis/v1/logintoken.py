@@ -16,7 +16,7 @@ class Login(Resource):
         if username:
             password = request_data[Loginfrom.password]
             if User.check_pwd(username, password):
-                token = create_auto_token(username=request_data.username, role=username.role)
+                token = create_auto_token(username=request_data.username, role='test')
                 return Res(LoginSuccess, token=token)
             else:
                 return PasswordErr
