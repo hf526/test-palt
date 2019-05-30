@@ -12,6 +12,7 @@ import os
 
 def inputc():
     system = input()
+    os.system("pipenv shell")
     if system == "init":
         os.system("python manage.py db init")
         os.system("python manage.py db migrate")

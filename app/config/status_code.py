@@ -1,40 +1,40 @@
-def StatusCode(**kwargs):
-    return kwargs
-
-
-Success = StatusCode(
+Success = dict(
     code=0,
     data="操作成功"
 )
-LoginSuccess = StatusCode(
+ERR = dict(
+    code=0,
+    data="操作失败"
+)
+LoginSuccess = dict(
     code=0,
     data="登陆成功"
 )
-NotLogin = StatusCode(
+NotLogin = dict(
     code=1000,
     data="请先登录"
 )
-UserNull = StatusCode(
+UserNull = dict(
     code=1001,
     msg="用户不存在"
 )
-PasswordErr = StatusCode(
+PasswordErr = dict(
     code=1001,
-    msg="用户不存在"
+    msg="密码错误"
 )
-TokenInvaild = StatusCode(
+TokenInvaild = dict(
     code=1,
     msg="token is invaild"
 )
-TokenExpired = StatusCode(
+TokenExpired = dict(
     code=1,
     msg="token is expired"
 )
-UserExist = StatusCode(
+UserExist = dict(
     code=1002,
     msg="用户已存在"
 )
-UnknowError = StatusCode(
+UnknowError = dict(
     code=1003,
     msg="未知错误"
 )

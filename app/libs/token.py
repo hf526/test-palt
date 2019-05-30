@@ -7,7 +7,7 @@ from itsdangerous import BadSignature, SignatureExpired
 import time
 from app.config.status_code import *
 from app.config.config import SECRET_KEY
-from collections import namedtuple
+from app.models.model import User
 from flask import g, request
 
 
@@ -26,6 +26,10 @@ def create_auto_token(username, role, nowtime=time.time()):
 
 
 def Verifytoken():
+    """
+    token验证函数
+    :return:验证通过返回token包含的参数
+    """
     try:
         token = request.headers["token"]
         s = Serializer(SECRET_KEY, expires_in=7200)
@@ -35,21 +39,29 @@ def Verifytoken():
             return TokenInvaild
         except SignatureExpired:
             return TokenExpired
-        username = data['username']
-        print('tokenname',username)
-        role = data['role']
-        User = namedtuple('Token', ['username', 'role'])
-        return User(username=username, role=role)
+        user = User.query.filter_by(username=data.username).first()
+        if user:
+            return data
+        return UserNull
     except KeyError:
         return NotLogin
 
 
 def Verify(func):
+    """
+    验证token有效性的装饰器
+    :param func: 函数
+    :return: api函数
+    """
+
     def wrapper(*args, **kwargs):
         userinfo = Verifytoken()
-        if "test1" in userinfo:
-            func(*args, **kwargs)
+        if type(userinfo) == dict:
+            try:
+                return func(*args, **kwargs)
+            except:
+                return UnknowError
         else:
-            print('傻逼')
             return userinfo
+
     return wrapper

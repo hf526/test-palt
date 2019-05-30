@@ -1,18 +1,14 @@
 """
 序列化model的类
 """
-from app.app import ma
-from app.models.model import User, Role, Case, Api, WebConfig, Logs, Variable
+from marshmallow import Schema, fields, post_load
 
 
-class UserSchema(ma.Schema):
-    class Meta:
-        model = User
-
-#
-# user = User.query.filter_by(username='test1').first()
-# schema = UserSchema()
-# result = schema.dump(user)
-# result = schema.dump(result.data)
-#
-# print(result.data)
+class UserSchema(Schema):
+    """用户序列化类"""
+    id = fields.Integer()
+    name = fields.Str()
+    username = fields.Str()
+    status = fields.Integer()
+    create_time = fields.DateTime()
+    update_time = fields.DateTime()

@@ -2,7 +2,6 @@
 首先主类定义前端需要传递的字段，定义函数获取前端参数，序列化成字典返回
 """
 from flask_restful import reqparse
-from app.models.SerializeModel import UserSchema
 
 
 class Verifyfromdata:
@@ -30,9 +29,7 @@ def UserAddData():
     parser.add_argument(Verifyfromdata.password, type=str, required=True)
     parser.add_argument(Verifyfromdata.role, type=int)
     args = parser.parse_args()
-    schema = UserSchema()
-    result = schema.load(args)
-    return result
+    return args
 
 
 def UserEdit():
@@ -41,13 +38,12 @@ def UserEdit():
     然后序列化进行前端序列化成对象返回
     """
     parser = reqparse.RequestParser()
+    parser.add_argument(Verifyfromdata.id, type=str, required=True)
     parser.add_argument(Verifyfromdata.name, type=str)
     parser.add_argument(Verifyfromdata.password, type=str)
     parser.add_argument(Verifyfromdata.role, type=int)
     args = parser.parse_args()
-    schema = UserSchema()
-    result = schema.load(args)
-    return result
+    return args
 
 
 def UserSel():
@@ -74,9 +70,7 @@ def UserDel():
     parser = reqparse.RequestParser()
     parser.add_argument(Verifyfromdata.id, type=int, required=True)
     args = parser.parse_args()
-    schema = UserSchema()
-    result = schema.load(args)
-    return result
+    return args
 
 
 class ToClass:

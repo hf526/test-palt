@@ -1,6 +1,6 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.app import db, ma
+from app.app import db
 
 
 class Base:
@@ -14,16 +14,18 @@ class Base:
             return True
         except Exception as e:
             db.session.rollback()
-            return e
+            print(e)
+            return False
 
     def delete_data(self):
         try:
-            db.session.delete(self)
+            self.status = 1
             db.session.commit()
             return True
         except Exception as e:
             db.session.rollback()
-            return e
+            print(e)
+            return False
 
 
 class User(Base, db.Model):
@@ -32,7 +34,7 @@ class User(Base, db.Model):
     name = db.Column(db.String(128), comment="用户昵称", default="未填写昵称用户")
     username = db.Column(db.String(128), unique=True, comment="用户名")
     pwd_hash = db.Column(db.String(512), comment="密码")
-    status = db.Column(db.Integer, comment="状态")
+    status = db.Column(db.Integer, comment="状态,0正常 1删除", default=0)
     create_time = db.Column(db.DateTime, default=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), comment="创建时间")
     update_time = db.Column(db.DateTime, default=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), comment="更新时间")
 
@@ -137,4 +139,3 @@ class Variable(Base, db.Model):
 
     def __repr__(self):
         return '<Api %r>' % self.__tablename__
-
