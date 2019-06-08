@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../vue项目/d2_admin/.idea/d2_admin.iml" filepath="$PROJECT_DIR$/../vue项目/d2_admin/.idea/d2_admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/flask_admin.iml" filepath="$PROJECT_DIR$/.idea/flask_admin.iml" />
       <module fileurl="file://D:/hexo/my_blog/.idea/my_blog.iml" filepath="D:/hexo/my_blog/.idea/my_blog.iml" />
     </modules>

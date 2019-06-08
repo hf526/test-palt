@@ -2,6 +2,7 @@
 首先主类定义前端需要传递的字段，定义函数获取前端参数，序列化成字典返回
 """
 from flask_restful import reqparse
+from app.models.SerializeModel import UserSchema
 
 
 class Verifyfromdata:
@@ -16,6 +17,8 @@ class Verifyfromdata:
     password = 'password'
     limit = 'limit'
     page = 'page'
+    create_time = 'create_time'
+    update_time = 'update_time'
 
 
 def UserAddData():
@@ -27,9 +30,13 @@ def UserAddData():
     parser.add_argument(Verifyfromdata.name, type=str, required=True)
     parser.add_argument(Verifyfromdata.username, type=str, required=True)
     parser.add_argument(Verifyfromdata.password, type=str, required=True)
-    parser.add_argument(Verifyfromdata.role, type=int)
+    parser.add_argument(Verifyfromdata.role, type=str, required=True)
     args = parser.parse_args()
-    return args
+    role = args.get(Verifyfromdata.role)
+    schema = UserSchema()
+    args = schema.load(args).data
+    print(args)
+    return args, role
 
 
 def UserEdit():
@@ -43,6 +50,8 @@ def UserEdit():
     parser.add_argument(Verifyfromdata.password, type=str)
     parser.add_argument(Verifyfromdata.role, type=int)
     args = parser.parse_args()
+    schema = UserSchema()
+    args = schema.load(args).data
     return args
 
 
@@ -57,8 +66,11 @@ def UserSel():
     parser.add_argument(Verifyfromdata.page, type=int)
     parser.add_argument(Verifyfromdata.name, type=str)
     parser.add_argument(Verifyfromdata.username, type=str)
-    parser.add_argument(Verifyfromdata.role, type=int)
+    parser.add_argument(Verifyfromdata.create_time, type=str)
+    parser.add_argument(Verifyfromdata.update_time, type=str)
     args = parser.parse_args()
+    schema = UserSchema()
+    args = schema.load(args).data
     return args
 
 
@@ -70,6 +82,8 @@ def UserDel():
     parser = reqparse.RequestParser()
     parser.add_argument(Verifyfromdata.id, type=int, required=True)
     args = parser.parse_args()
+    schema = UserSchema()
+    args = schema.load(args).data
     return args
 
 

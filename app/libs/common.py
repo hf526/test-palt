@@ -21,3 +21,5 @@ def Res(data, status=200, **kwargs):
     headers.update(kwargs)
     result = make_response(jsonify(data), status, headers)
     return result
+
+

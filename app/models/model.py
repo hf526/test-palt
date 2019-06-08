@@ -28,6 +28,13 @@ class Base:
             return False
 
 
+# 权限角色表，绑定用户和角色
+permissions = db.Table('permissions',
+                       db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+                       db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
+                       )
+
+
 class User(Base, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, comment="主键")
@@ -37,6 +44,7 @@ class User(Base, db.Model):
     status = db.Column(db.Integer, comment="状态,0正常 1删除", default=0)
     create_time = db.Column(db.DateTime, default=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), comment="创建时间")
     update_time = db.Column(db.DateTime, default=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), comment="更新时间")
+    role = db.relationship('Role', secondary=permissions, backref=db.backref('user_role', lazy='dynamic'))
 
     def __init__(self, name, username, password):
         self.name = name
@@ -60,12 +68,24 @@ class User(Base, db.Model):
     def __repr__(self):
         return '<Project %r>' % self.__tablename__
 
+    def add_user(self, role):
+        try:
+            db.session.add(self)
+            roleob = Role.query.filter_by(role=role).first()
+            self.role.append(roleob)
+            db.session.commit()
+            return True
+        except Exception as e:
+            db.session.rollback()
+            print(e)
+            return False
+
 
 class Role(Base, db.Model):
     __tablename__ = 'role'
     id = db.Column(db.Integer, primary_key=True, comment="主键")
-    username = db.Column(db.String(128), unique=True, comment="用户名")
-    role = db.Column(db.Integer, comment="用户角色")
+    role = db.Column(db.String(512), comment="用户角色")
+    description = db.Column(db.String(512), comment="中文含义")
 
     def __repr__(self):
         return '<Role %r>' % self.__tablename__
@@ -139,3 +159,33 @@ class Variable(Base, db.Model):
 
     def __repr__(self):
         return '<Api %r>' % self.__tablename__
+
+# user1 = User(name='测试1', username='admin', password='123456')
+# user2 = User(name='测试2', username='test', password='123456')
+# role1 = Role(role='管理员')
+# role2 = Role(role='普通用户')
+# user1.role = [role1, role2]
+# user2.role = [role1]
+# db.session.add(user1)
+# db.session.add(user2)
+# db.session.commit()
+
+# user = Role.query.filter_by(id=1).first()
+# print(user)
+# user.user_role
+
+# user = Role.query.filter_by(id=1).first()
+# print(user.role)
+# print(user.user_role.first().name)
+# for i in user:
+#     for j in i:
+#         print(j.username)
+# roles=Role.query.filter_by(id=1).first()
+# print(roles)
+# user = User.query.filter_by(id=1).first()
+# print(user)
+# user.role.remove(roles)
+# db.session.commit()
+# print(user.role)
+# for i in user.role:
+#     print(i.role)
