@@ -17,6 +17,8 @@ flask-script = "*"
 install = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+paramiko = "*"
+tailon = "*"
 
 [requires]
 python_version = "3.7"
