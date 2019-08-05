@@ -6,6 +6,7 @@ http://www.mamicode.com/info-detail-2151386.html
 http://www.maiziedu.com/wiki/frame/brief/
 https://www.xuebuyuan.com/1107365.html
 https://blog.csdn.net/diyiday/article/details/81871054
+https://blog.csdn.net/s740556472/article/details/78991704
 """
 import paramiko
 import sys
