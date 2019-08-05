@@ -1,6 +1,9 @@
 """
 来源：https://www.cnblogs.com/zhangxinqi/p/8372774.html
 https://blog.csdn.net/weixin_39912556/article/details/80576624
+https://www.cnblogs.com/xiao-apple36/p/9144092.html#_label1
+http://www.mamicode.com/info-detail-2151386.html
+http://www.maiziedu.com/wiki/frame/brief/
 """
 import paramiko
 import sys
@@ -18,13 +21,21 @@ class CoonectLinux:
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         # 调用connect方法连接服务器
         ssh.connect(hostname=hostname, port=port, username=username, password=password)
-        #执行命令
-        stdin, stdout, stderr = ssh.exec_command('tail -f /root/test/test.log')
-        print(stdout.read().decode())
-        ssh.close()
+        # 执行命令
+        number = 0
+        while True:
+            stdin, stdout, stderr = ssh.exec_command('cat -n /root/test/test.log')
+            print(stdout.read().decode())
+            nownumber = stdout.read().decode().split('\n')
+            print(nownumber)
+            if number != nownumber:
+                print('测试')
+                print(stdout.read().decode())
+                number = nownumber
+            ssh.close()
 
     def connect_aly2(self, hostname=LinuxConfig.ip, port=LinuxConfig.port, username=LinuxConfig.user,
-                    password=LinuxConfig.password):
+                     password=LinuxConfig.password):
         # 实例化一个transport对象
         trans = paramiko.Transport((hostname, port))
         # 建立连接
@@ -41,7 +52,7 @@ class CoonectLinux:
         trans.close()
 
     def connect_aly3(self, hostname=LinuxConfig.ip, port=LinuxConfig.port, username=LinuxConfig.user,
-                    password=LinuxConfig.password):
+                     password=LinuxConfig.password):
         """实现动态感知日志"""
         # 建立一个socket
         trans = paramiko.Transport((hostname, port))
@@ -92,5 +103,6 @@ class CoonectLinux:
         # 关闭链接
         trans.close()
 
+
 a = CoonectLinux()
-a.connect_aly3()
+a.coonect_aly()
