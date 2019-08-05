@@ -10,6 +10,7 @@ import sys
 import os
 import select
 from app.config.linux_config import LinuxConfig
+from paramiko_expect import SSHClientInteraction
 
 
 class CoonectLinux:
@@ -23,16 +24,25 @@ class CoonectLinux:
         ssh.connect(hostname=hostname, port=port, username=username, password=password)
         # 执行命令
         number = 0
-        while True:
-            stdin, stdout, stderr = ssh.exec_command('cat -n /root/test/test.log')
-            print(stdout.read().decode())
-            nownumber = stdout.read().decode().split('\n')
-            print(nownumber)
-            if number != nownumber:
-                print('测试')
-                print(stdout.read().decode())
-                number = nownumber
-            ssh.close()
+        interact = SSHClientInteraction(ssh, timeout=10, display=False)
+        PROMPT = "(node name)#"
+        # interact.send('sudo su\n')
+        interact.expect(PROMPT)
+        interact.send('tail -f /root/test/test.log')
+        # log_name = path.split('/')[-1].split('.')[0]
+        # interact.tail(line_prefix=log_name + ':  ',output_callback=output_func)
+        interact.tail(line_prefix ='测试:')
+
+        # while True:
+        #     stdin, stdout, stderr = ssh.exec_command('cat -n /root/test/test.log')
+        #     print(stdout.read().decode())
+        #     nownumber = stdout.read().decode().split('\n')
+        #     print(nownumber)
+        #     if number != nownumber:
+        #         print('测试')
+        #         print(stdout.read().decode())
+        #         number = nownumber
+        #     ssh.close()
 
     def connect_aly2(self, hostname=LinuxConfig.ip, port=LinuxConfig.port, username=LinuxConfig.user,
                      password=LinuxConfig.password):
