@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b846fa48-422b-4480-bfe8-2c9746cbb0ab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/tests/connectlinux.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/tests/connectlinux.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vue项目/d2_admin/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vue项目/d2_admin/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vue项目/d2_admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vue项目/d2_admin/package.json" afterDir="false" />
@@ -71,14 +70,14 @@
           <entry key="Pipfile" value="1" />
           <entry key="dummy" value="25" />
           <entry key="md" value="44" />
-          <entry key="py" value="5961" />
+          <entry key="py" value="5962" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="44" />
           <entry key="PLAIN_TEXT" value="25" />
-          <entry key="Python" value="5961" />
+          <entry key="Python" value="5962" />
           <entry key="TOML" value="1" />
         </counts>
       </usages-collector>
@@ -128,8 +127,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/tests/connectlinux.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+            <state relative-caret-position="150">
+              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
               <folding>
                 <element signature="e#275#290#0" expanded="true" />
               </folding>
@@ -555,7 +554,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.4326241" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.39574468" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.45106384" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -972,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/tests/connectlinux.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+        <state relative-caret-position="150">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding>
             <element signature="e#275#290#0" expanded="true" />
           </folding>
