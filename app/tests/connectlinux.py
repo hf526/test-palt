@@ -5,6 +5,7 @@ https://www.cnblogs.com/xiao-apple36/p/9144092.html#_label1
 http://www.mamicode.com/info-detail-2151386.html
 http://www.maiziedu.com/wiki/frame/brief/
 https://www.xuebuyuan.com/1107365.html
+https://blog.csdn.net/diyiday/article/details/81871054
 """
 import paramiko
 import sys
