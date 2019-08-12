@@ -5,6 +5,7 @@ from app.app import app
 from flask_restful import Api
 from flask import Blueprint
 from app.apis.v1.logintoken import Login
+from app.apis.v1.catlogs import UserLogin,UserInfo,GetLogs
 from app.apis.v1.user import UserAdd, EditUser, DelUser, SelectUser
 from app.config.apipath import *
 
@@ -12,7 +13,10 @@ v1 = Blueprint('v1', __name__)
 api = Api(v1)
 
 api.add_resource(UserAdd, Userapi.add)
+api.add_resource(UserLogin, Userapi.userlogin)
+api.add_resource(UserInfo, Userapi.userinfo)
 api.add_resource(EditUser, Userapi.edit)
+api.add_resource(GetLogs, Userapi.getlogs)
 api.add_resource(DelUser, Userapi.delete)
 api.add_resource(SelectUser, Userapi.select)
 api.add_resource(Login, LoginApi.login)

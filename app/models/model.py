@@ -161,16 +161,16 @@ class Variable(Base, db.Model):
         return '<Api %r>' % self.__tablename__
 
 
-class WebConfig(Base, db.Model):
-    __tablename__ = 'webconfig'
-    id = db.Column(db.Integer, primary_key=True, comment="主键")
-    role = db.Column(db.String(80), comment="角色名称")
-    routerlist = db.Column(db.String(1024), comment="路由配置")
-    asidelist = db.Column(db.String(1024), comment="右菜单")
-    headerlist = db.Column(db.String(1024), comment="头部菜单")
-
-    def __repr__(self):
-        return '<WebConfig %r>' % self.__tablename__
+# class WebConfig(Base, db.Model):
+#     __tablename__ = 'webconfig'
+#     id = db.Column(db.Integer, primary_key=True, comment="主键")
+#     role = db.Column(db.String(80), comment="角色名称")
+#     routerlist = db.Column(db.String(1024), comment="路由配置")
+#     asidelist = db.Column(db.String(1024), comment="右菜单")
+#     headerlist = db.Column(db.String(1024), comment="头部菜单")
+#
+#     def __repr__(self):
+#         return '<WebConfig %r>' % self.__tablename__
 
 # user1 = User(name='测试1', username='admin', password='123456')
 # user2 = User(name='测试2', username='test', password='123456')
